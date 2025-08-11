@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fitness Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d1117" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Fitness Tracker</h1>
+    <nav>
+  <select id="workoutSelect" aria-label="Select workout" title="Choose workout session"></select>
+      <button id="newSessionBtn">New Session</button>
+      <button id="historyBtn">History</button>
+      <button id="exportBtn">Export</button>
+      <label class="import-label">
+        Import <input type="file" id="importInput" accept="application/json" hidden />
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sessionMeta" class="card hidden"></section>
+    <section id="exercisesContainer"></section>
+    <section id="historyPanel" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="historyTitle">Session History</h2>
+          <button class="icon" id="closeHistory" aria-label="Close">✕</button>
+        </div>
+        <div id="historyList"></div>
+      </div>
+    </section>
+    <section id="toast" class="toast hidden" role="status" aria-live="polite"></section>
+  </main>
+
+  <template id="exerciseTemplate">
+    <div class="exercise card">
+      <h3 class="exercise-title"></h3>
+      <div class="exercise-body">
+        <table class="sets-table">
+          <thead>
+            <tr><th>#</th><th>Weight</th><th>Target</th><th>Reps</th><th>Notes</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="add-set-btn">Add Set</button>
+      </div>
+      <!-- add-set-btn moved into .exercise-body for collapsible layout -->
+    </div>
+  </template>
+
+  <template id="setRowTemplate">
+    <tr class="set-row">
+      <td class="set-number"></td>
+  <td><input type="number" inputmode="decimal" class="weight-input" aria-label="Weight" placeholder="Weight" /></td>
+      <td class="target-cell"></td>
+  <td><input type="number" inputmode="numeric" class="reps-input" aria-label="Reps Completed" placeholder="Reps" /></td>
+  <td><input type="text" class="notes-input" aria-label="Notes" placeholder="Notes / cues" /></td>
+      <td><button class="delete-set-btn" aria-label="Delete set">✕</button></td>
+    </tr>
+  </template>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
